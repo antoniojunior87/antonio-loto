@@ -1,5 +1,7 @@
 package com.antonio.loto;
 
+import com.antonio.loto.entity.ResultadoMega;
+
 /**
  * @author Junior
  */
@@ -61,6 +63,90 @@ public class Resultado {
 		this.acumuladoMegaVirada = (String) acumuladoMegaVirada;
 	}
 
+	public String getConcurso() {
+		return concurso;
+	}
+
+	public String getDataSorteio() {
+		return dataSorteio;
+	}
+
+	public String getDezena1() {
+		return dezena1;
+	}
+
+	public String getDezena2() {
+		return dezena2;
+	}
+
+	public String getDezena3() {
+		return dezena3;
+	}
+
+	public String getDezena4() {
+		return dezena4;
+	}
+
+	public String getDezena5() {
+		return dezena5;
+	}
+
+	public String getDezena6() {
+		return dezena6;
+	}
+
+	public String getArrecadacaoTotal() {
+		return arrecadacaoTotal;
+	}
+
+	public String getGanhadoresSena() {
+		return ganhadoresSena;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public String getUf() {
+		return uf;
+	}
+
+	public String getRateioSena() {
+		return rateioSena;
+	}
+
+	public String getGanhadoresQuina() {
+		return ganhadoresQuina;
+	}
+
+	public String getRateioQuina() {
+		return rateioQuina;
+	}
+
+	public String getGanhadoresQuadra() {
+		return ganhadoresQuadra;
+	}
+
+	public String getRateioQuadra() {
+		return rateioQuadra;
+	}
+
+	public String getAcumulado() {
+		return acumulado;
+	}
+
+	public String getValorAcumulado() {
+		return valorAcumulado;
+	}
+
+	public String getEstimativaPremio() {
+		return estimativaPremio;
+	}
+
+	public String getAcumuladoMegaVirada() {
+		return acumuladoMegaVirada;
+	}
+
 	@Override
 	public String toString() {
 		return "Resultado [concurso=" + concurso + ", dataSorteio=" + dataSorteio + ", dezena1=" + dezena1
@@ -71,6 +157,14 @@ public class Resultado {
 				+ ganhadoresQuadra + ", rateioQuadra=" + rateioQuadra + ", acumulado=" + acumulado + ", valorAcumulado="
 				+ valorAcumulado + ", estimativaPremio=" + estimativaPremio + ", acumuladoMegaVirada="
 				+ acumuladoMegaVirada + "]";
+	}
+
+	public ResultadoMega obterResultadoMega() {
+		ResultadoMega r = new ResultadoMega();
+
+		r.setConcurso(Integer.valueOf(concurso));
+
+		return r;
 	}
 
 }
