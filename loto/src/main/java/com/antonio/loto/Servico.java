@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.zip.ZipEntry;
@@ -15,18 +16,18 @@ import com.antonio.loto.arquivo.html.Body;
 import com.antonio.loto.dao.GenericDao;
 import com.antonio.loto.entity.ResultadoMega;
 
-public class AtualizadorBaseService {
+public class Servico {
 
 	private static final String URL = "http://www1.caixa.gov.br/loterias/_arquivos/loterias/D_megase.zip";
 
-	private static final SimpleDateFormat SDF = new SimpleDateFormat("dd/mm/yyyy");
+	private static final SimpleDateFormat SDF = new SimpleDateFormat("dd/MM/yyyy");
 
 	private GenericDao dao;
 
 	private DecimalFormat df = new DecimalFormat();
 	private DecimalFormatSymbols sfs = new DecimalFormatSymbols();
 
-	public AtualizadorBaseService() {
+	public Servico() {
 		sfs.setDecimalSeparator(',');
 		df.setDecimalFormatSymbols(sfs);
 	}
@@ -36,6 +37,14 @@ public class AtualizadorBaseService {
 			dao = new GenericDao();
 		}
 		return dao;
+	}
+
+	public List<ResultadoMega> listarTodos() {
+		return getDao().listarTodos("findAllResultadoMega");
+	}
+
+	public List<ResultadoMega> listarPorPeriodo(Date inicio, Date fim) {
+		return getDao().listarPorPeriodo("findResultadoMegaPorPeriodo", inicio, fim);
 	}
 
 	public void atualizarBase() throws Exception {
@@ -84,7 +93,7 @@ public class AtualizadorBaseService {
 		retorno.setRateioQuina(df.parse((result.getRateioQuina())).doubleValue());
 		retorno.setGanhadoresQuadra(Integer.valueOf(result.getGanhadoresQuadra()));
 		retorno.setRateioQuadra(df.parse((result.getRateioQuadra())).doubleValue());
-		retorno.setAcumulado(result.getAcumulado());
+		retorno.setAcumulado(result.getAcumulado().startsWith("S"));
 		retorno.setValorAcumulado(df.parse((result.getValorAcumulado())).doubleValue());
 		retorno.setEstimativaPremio(df.parse((result.getEstimativaPremio())).doubleValue());
 		retorno.setAcumuladoMegaVirada(df.parse((result.getAcumuladoMegaVirada())).doubleValue());

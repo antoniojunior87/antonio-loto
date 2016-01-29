@@ -17,7 +17,7 @@ import junit.framework.TestCase;
 public class LeitorArquivoTest extends TestCase {
 
 	public void testService() throws Exception {
-		AtualizadorBaseService service = new AtualizadorBaseService();
+		Servico service = new Servico();
 		service.atualizarBase();
 	}
 

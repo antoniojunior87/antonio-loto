@@ -11,7 +11,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@NamedQueries({ @NamedQuery(name = "findAllResultadoMega", query = "SELECT c FROM ResultadoMega c") })
+@NamedQueries({ @NamedQuery(name = "findAllResultadoMega", query = "SELECT c FROM ResultadoMega c"),
+	 @NamedQuery(name = "findResultadoMegaPorPeriodo", query = "SELECT c FROM ResultadoMega c where c.dataSorteio between :inicio and :fim") })
 public class ResultadoMega {
 
 	@Id
@@ -49,7 +50,7 @@ public class ResultadoMega {
 	@Column
 	private Double rateioQuadra;
 	@Column
-	private String acumulado;
+	private boolean acumulado;
 	@Column
 	private Double valorAcumulado;
 	@Column
@@ -196,11 +197,11 @@ public class ResultadoMega {
 		this.rateioQuadra = rateioQuadra;
 	}
 
-	public String getAcumulado() {
+	public boolean getAcumulado() {
 		return acumulado;
 	}
 
-	public void setAcumulado(String acumulado) {
+	public void setAcumulado(boolean acumulado) {
 		this.acumulado = acumulado;
 	}
 
@@ -226,6 +227,55 @@ public class ResultadoMega {
 
 	public void setAcumuladoMegaVirada(Double acumuladoMegaVirada) {
 		this.acumuladoMegaVirada = acumuladoMegaVirada;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ResultadoMega [concurso=");
+		builder.append(concurso);
+		builder.append(", dataSorteio=");
+		builder.append(dataSorteio);
+		builder.append(", dezena1=");
+		builder.append(dezena1);
+		builder.append(", dezena2=");
+		builder.append(dezena2);
+		builder.append(", dezena3=");
+		builder.append(dezena3);
+		builder.append(", dezena4=");
+		builder.append(dezena4);
+		builder.append(", dezena5=");
+		builder.append(dezena5);
+		builder.append(", dezena6=");
+		builder.append(dezena6);
+		builder.append(", arrecadacaoTotal=");
+		builder.append(arrecadacaoTotal);
+		builder.append(", ganhadoresSena=");
+		builder.append(ganhadoresSena);
+		builder.append(", cidade=");
+		builder.append(cidade);
+		builder.append(", uf=");
+		builder.append(uf);
+		builder.append(", rateioSena=");
+		builder.append(rateioSena);
+		builder.append(", ganhadoresQuina=");
+		builder.append(ganhadoresQuina);
+		builder.append(", rateioQuina=");
+		builder.append(rateioQuina);
+		builder.append(", ganhadoresQuadra=");
+		builder.append(ganhadoresQuadra);
+		builder.append(", rateioQuadra=");
+		builder.append(rateioQuadra);
+		builder.append(", acumulado=");
+		builder.append(acumulado);
+		builder.append(", valorAcumulado=");
+		builder.append(valorAcumulado);
+		builder.append(", estimativaPremio=");
+		builder.append(estimativaPremio);
+		builder.append(", acumuladoMegaVirada=");
+		builder.append(acumuladoMegaVirada);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }

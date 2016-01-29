@@ -1,5 +1,6 @@
 package com.antonio.loto.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -39,5 +40,12 @@ public class GenericDao {
 	public <T> List<T> listarTodos(String namedQuery) {
 		EntityManager entityManager = getEntityManagerFactory().createEntityManager();
 		return (List<T>) entityManager.createNamedQuery(namedQuery).getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	public <T> List<T> listarPorPeriodo(String namedQuery, Date inicio, Date fim) {
+		EntityManager entityManager = getEntityManagerFactory().createEntityManager();
+		return (List<T>) entityManager.createNamedQuery(namedQuery).setParameter("inicio", inicio)
+				.setParameter("fim", fim).getResultList();
 	}
 }
