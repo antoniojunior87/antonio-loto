@@ -13,14 +13,17 @@ public class App {
 
 		Servico service = new Servico();
 		service.atualizarBase();
-		// List<ResultadoMega> lista = service.listarTodos();
-		List<ResultadoMega> lista = service.listarPorPeriodo(SDF.parse("01/01/2016"), SDF.parse("01/05/2016"));
+		List<ResultadoMega> lista = service.listarTodos();
+		// List<ResultadoMega> lista =
+		// service.listarPorPeriodo(SDF.parse("01/01/2016"),
+		// SDF.parse("01/05/2016"));
 		System.out.println("Resultados: " + lista.size());
 		// System.out.println(lista);
-		numerosMaisSorteados(lista);
+		int[] valores = numerosMaisSorteados(lista);
+		Grafico.plotarGrafico(valores);
 	}
 
-	private static void numerosMaisSorteados(List<ResultadoMega> lista) {
+	private static int[] numerosMaisSorteados(List<ResultadoMega> lista) {
 
 		int histograma[] = new int[61];
 
@@ -37,6 +40,7 @@ public class App {
 			System.out.println(String.format("[%2d] - \t%8d - \t%s", i, histograma[i], print(histograma[i])));
 		}
 
+		return histograma;
 	}
 
 	private static String print(int count) {
