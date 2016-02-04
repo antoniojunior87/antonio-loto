@@ -86,8 +86,8 @@ public class Servico {
 		retorno.setDezena6(Integer.valueOf(result.getDezena6()));
 		retorno.setArrecadacaoTotal(df.parse((result.getArrecadacaoTotal())).doubleValue());
 		retorno.setGanhadoresSena(Integer.valueOf(result.getGanhadoresSena()));
-		retorno.setCidade(result.getCidade());
-		retorno.setUf(result.getUf());
+		retorno.setCidade(result.getCidade() == null || result.getCidade().isEmpty() ? null : result.getCidade());
+		retorno.setUf(result.getUf() == null || result.getUf().isEmpty() ? null : result.getUf());
 		retorno.setRateioSena(df.parse((result.getRateioSena())).doubleValue());
 		retorno.setGanhadoresQuina(Integer.valueOf(result.getGanhadoresQuina()));
 		retorno.setRateioQuina(df.parse((result.getRateioQuina())).doubleValue());
